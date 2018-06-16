@@ -1,0 +1,3 @@
+logger\weight\model\Weight.class
+logger\weight\controller\WeightServlet.class
+logger\weight\service\WeightService.class
