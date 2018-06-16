@@ -1,6 +1,7 @@
 package logger.weight.controller;
 
 
+import logger.weight.model.Weight;
 import logger.weight.service.WeightService;
 
 import javax.servlet.ServletException;
@@ -33,9 +34,16 @@ public class WeightServlet extends HttpServlet{
 
         if(request.getServletPath().equals(DETAILS_ACTION)){
             weightDetails(request,response);
-        } else {
+        }   else if(request.getServletPath().equals(ADD_ACTION)) {
+            weightForm(response, request);
+        }
+        else {
             weightList(request, response);
         }
+    }
+
+    private void weightForm(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException{
+        request.getRequestDispatcher("form.jsp").forward(request, response);
     }
 
     private void weightList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -53,23 +61,14 @@ public class WeightServlet extends HttpServlet{
     }
 
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{}
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String name = request.getParameter("weightName");
+        String weight = request.getParameter("weight");
+        String description = request.getParameter("weightDescription");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        weightService.add(new Weight(WeightService.CURRENT_INDEX++,name,Double.valueOf(weight),description));;
+        response.sendRedirect("/weight-servlet");
+    }
 
 
 

@@ -25,5 +25,7 @@
 </c:forEach>
 </table>
 
+<a href="add" >Add new weight entry</a>
+
 </body>
 </html>
