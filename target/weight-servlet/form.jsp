@@ -3,11 +3,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Add new Animal</title>
+    <title>Add new weight entry</title>
 </head>
 <body>
 
-  <h1>Add new Animal</h1>
+  <h1>Add new weight entry</h1>
 
   <form method="post" action="/weight-servlet/" class="w3-container">
     <label>Weight note</label>

@@ -1,15 +1,19 @@
 package logger.weight.controller;
 
 
+import logger.weight.model.ChartPair;
 import logger.weight.model.Weight;
 import logger.weight.service.WeightService;
 
+import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {
         WeightServlet.LIST_ACTION,
@@ -47,7 +51,9 @@ public class WeightServlet extends HttpServlet{
     }
 
     private void weightList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+       List<Weight> allWeight = weightService.findAll();
         request.setAttribute(WEIGHT_LIST, weightService.findAll());
+        prepareDataForChart(request,allWeight);
         request.getRequestDispatcher("list.jsp").forward(request,response);
     }
     private void weightDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -59,6 +65,20 @@ public class WeightServlet extends HttpServlet{
             request.getRequestDispatcher("details.jsp").forward(request,response);
         }
     }
+
+    private void prepareDataForChart(HttpServletRequest request, List<Weight> allWeight) {
+        request.setAttribute("chartData", new Gson().toJson(
+                allWeight.stream()
+                        .map(a -> new ChartPair(a.getName(),a.getWeight()))
+                        .collect(Collectors.toList())
+                )
+        );
+        request.setAttribute("chartTitle", "chartData");
+    }
+
+
+
+
 
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
