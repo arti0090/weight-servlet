@@ -14,7 +14,7 @@
     <input type="text" name="weightName" class="w3-input" />
 
     <label>Your Weight</label>
-    <input type="number" name="weight" class="w3-input"/>
+    <input type="number"  name="weight" class="w3-input"/>
 
     <label>Description of weight</label>
     <textarea name="weightDescription" rows="4" cols="50" class="w3-input"></textarea>
