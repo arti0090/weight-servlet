@@ -1,0 +1,6 @@
+workspace.xml
+\target
+.idea/workspace.xml
+target/maven-archiver/pom.properties
+target/weight-servlet.war
+

@@ -1,6 +1,7 @@
 package logger.weight.model;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Weight {
@@ -9,7 +10,7 @@ public class Weight {
     private String name; //short name of entry
     private double weight; // weight to log
     private String description; //long description of entry
-    //private  Date date;
+    private String date;
 
     public Weight(int id, String name, double weight, String description) {// missing date in constructor
         this.id = id;
@@ -21,6 +22,15 @@ public class Weight {
     //public Date getDate() {
       //  return date;
    // }
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;
@@ -38,8 +48,6 @@ public class Weight {
         return description;
     }
 
-    SimpleDateFormat ft =
-            new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
 
     @Override
     public String toString() {
@@ -48,7 +56,7 @@ public class Weight {
                     "name= " + name +
                     "weight= "  + weight +
                     "description= " + description +
-                   // "date= " + ft.format(date) +
+                    "date= " + date +
         '}';
     }
 }

@@ -14,10 +14,12 @@
     <input type="text" name="weightName" class="w3-input" />
 
     <label>Your Weight</label>
-    <input type="number"  name="weight" class="w3-input"/>
+    <input type="number" step="0.1" name="weight" min="0" placeholder="Put your weight here" class="w3-input"/>
 
     <label>Description of weight</label>
     <textarea name="weightDescription" rows="4" cols="50" class="w3-input"></textarea>
+
+
 
     <input type="submit" value="Add weight record " class="w3-btn"/>
     <a href="/weight-servlet" class="w3-btn w3-blue-grey">Back to list</a>
