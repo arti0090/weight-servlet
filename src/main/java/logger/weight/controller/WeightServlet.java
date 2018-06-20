@@ -69,7 +69,7 @@ public class WeightServlet extends HttpServlet{
     private void prepareDataForChart(HttpServletRequest request, List<Weight> allWeight) {
         request.setAttribute("chartData", new Gson().toJson(
                 allWeight.stream()
-                        .map(a -> new ChartPair(a.getName(),a.getWeight()))
+                        .map(a -> new ChartPair(a.getDate(),a.getWeight()))
                         .collect(Collectors.toList())
                 )
         );
@@ -79,14 +79,14 @@ public class WeightServlet extends HttpServlet{
 
 
 
-
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         String name = request.getParameter("weightName");
         String weight = request.getParameter("weight");
         String description = request.getParameter("weightDescription");
+        String date = request.getParameter("date");
 
-        weightService.add(new Weight(WeightService.CURRENT_INDEX++,name,Double.valueOf(weight),description));;
+
+        weightService.add(new Weight(WeightService.CURRENT_INDEX++,name,Double.valueOf(weight),description,date));
         response.sendRedirect("/weight-servlet");
     }
 

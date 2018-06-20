@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="logger.weight.service.WeightService" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -18,6 +19,8 @@
 
     <label>Description of weight</label>
     <textarea name="weightDescription" rows="4" cols="50" class="w3-input"></textarea>
+
+    <input type="date" name="date" pattern="dd-MM-YYYY">
 
     <input type="submit" value="Add weight record " class="w3-btn"/>
     <a href="/weight-servlet" class="w3-btn w3-blue-grey">Back to list</a>

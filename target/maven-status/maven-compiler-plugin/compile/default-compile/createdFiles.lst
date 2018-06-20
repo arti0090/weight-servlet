@@ -1,3 +1,4 @@
+logger\weight\Date.class
 logger\weight\model\Weight.class
 logger\weight\controller\WeightServlet.class
 logger\weight\model\ChartPair.class

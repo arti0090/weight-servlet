@@ -19,13 +19,13 @@
 <table class="w3-table">
     <tr>
         <th>Id</th>
-        <th>Name</th>
+        <th>Date</th>
         <th>Weight</th>
     </tr>
 <c:forEach items="${weightList}" var="weight">
     <tr>
         <td><c:out value="${weight.getId()}"/></td>
-        <td><c:out value="${weight.getName()}"/></td>
+        <td><c:out value="${weight.getDate()}"/></td>
         <td><c:out value="${weight.getWeight()}"/></td>
     </tr>
 </c:forEach>

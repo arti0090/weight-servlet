@@ -2,6 +2,7 @@ package logger.weight.service;
 
 import logger.weight.model.Weight;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,17 +10,18 @@ import java.util.stream.Collectors;
 
 public class WeightService {
 
-
-    public static final Weight UNKNOW_WEIGHT = new Weight(-1,"Unknown Weight",0.0,"");
+    public static final String DATE_FORMAT_NOW = "yyyy-MM-dd";
+    public static final Weight UNKNOW_WEIGHT = new Weight(-1,"Unknown Weight",0.0,"","");
     public static int CURRENT_INDEX = 1;
     private static List<Weight> WEIGHTS = new ArrayList<>();
 
     static{
-        //int id, String name, double weight, String description
+        //int id, String name, double weight, String description, String date
 
-        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-1",90.0,"description-1"));
-        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-2",80.0,"description-2"));
+        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-1",90.0,"description-1","2018-06-19"));
+        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-2",80.0,"description-2","2018-06-20"));
     }
+
 
     public Weight findOne(int id) {
         return WEIGHTS
@@ -40,4 +42,11 @@ public class WeightService {
                 .filter(weight -> weight.getId() != idToRemove)
                 .collect(Collectors.toList());
     }
+
+    public String formatDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+        String sdate = sdf.format(date);
+        return sdate;
+    }
+
 }
