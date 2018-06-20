@@ -3,6 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <!-- <link rel="stylesheet" type="text/css" href="style.css"/> -->
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-vml.min.js"></script>
@@ -30,15 +31,15 @@
 </c:forEach>
     <tr>
         <td colspan="6">
-            <div id="container"></div>
+            <div id="container" style="background-color: darkorange"></div>
             <script>
                 anychart.onDocumentLoad(function() {
-                    var data = anychart.data.set(${chartData});
-                    var chart = anychart.line(data);
-                    var seriesData1 = data.mapAs({x: 0, value: 1});
-                    var series1 = chart.line(seriesData1);
-                    series1.markers(true);
-                    series1.labels(true);
+                    var data = anychart.data.set(${chartData}).mapAs({x: "Value", value: 2});
+                    var chart = anychart.line();
+                    var series = chart.line(data);
+                    series.markers(true);
+                    series.labels(true);
+
 
                     //series1.labels().background.enabled(true);
                     //series1.labels().background.fill("#ffd642 0.8");
