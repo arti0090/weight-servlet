@@ -18,8 +18,8 @@ public class WeightService {
     static{
         //int id, String name, double weight, String description, String date
 
-        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-1",90.0,"description-1","2018-06-19"));
-        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-2",80.0,"description-2","2018-06-20"));
+        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-1",90.0,"description-1","19-06-2018"));
+        WEIGHTS.add(new Weight(CURRENT_INDEX++,"weight-2",80.0,"description-2","20-06-2018"));
     }
 
 
@@ -43,10 +43,10 @@ public class WeightService {
                 .collect(Collectors.toList());
     }
 
-    public String formatDate(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
-        String sdate = sdf.format(date);
-        return sdate;
-    }
+//    public String formatDate(String date) {
+//        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+//        String sdate = sdf.format(date);
+//        return sdate;
+//    }
 
 }

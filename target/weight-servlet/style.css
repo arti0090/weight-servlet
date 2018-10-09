@@ -1,1 +1,4 @@
-div.w3-con
+tr:hover{
+    cursor: pointer;
+    background-color: #3366ff;
+}

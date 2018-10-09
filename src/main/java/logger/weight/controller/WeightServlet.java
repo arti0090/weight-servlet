@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +31,7 @@ public class WeightServlet extends HttpServlet{
     public static final String ADD_ACTION ="/add";
     public static final String DETAILS_ACTION="/details";
     public static final String WEIGHT_ID = "weightId";
+    public static final String REMOVE_ACTION = "/remove";
 
     private WeightService weightService;
 
@@ -40,10 +43,19 @@ public class WeightServlet extends HttpServlet{
             weightDetails(request,response);
         }   else if(request.getServletPath().equals(ADD_ACTION)) {
             weightForm(response, request);
+        }   else if(request.getServletPath().equals(REMOVE_ACTION)) {
+            weightRemoveConfirm(request, response);
         }
+
         else {
             weightList(request, response);
         }
+    }
+
+    private void weightRemoveConfirm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String paramId = request.getParameter(WEIGHT_ID);   //napis paramId jest równy parametrowi WEIGHT_ID pobranemu jako request
+        request.setAttribute("weightId", paramId);
+        request.getRequestDispatcher("remove.jsp").forward(request, response);
     }
 
     private void weightForm(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException{
@@ -79,15 +91,28 @@ public class WeightServlet extends HttpServlet{
 
 
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String name = request.getParameter("weightName");
-        String weight = request.getParameter("weight");
-        String description = request.getParameter("weightDescription");
-        String date = request.getParameter("date");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //delete request
+        if (request.getServletPath().equals(REMOVE_ACTION)) {
+            String weightToRemoveId = request.getParameter("weightToRemoveId");
+            weightService.remove(Integer.valueOf(weightToRemoveId));
+            response.sendRedirect("weight-servlet");
 
+        } else {
+            //otherwise send reqest from form
 
-        weightService.add(new Weight(WeightService.CURRENT_INDEX++,name,Double.valueOf(weight),description,date));
-        response.sendRedirect("/weight-servlet");
+            String name = request.getParameter("weightName");
+            String weight = request.getParameter("weight");
+            String description = request.getParameter("weightDescription");
+            String date = request.getParameter("date");
+
+            String timeStamp = new SimpleDateFormat("dd-MM-YYYY").format(Calendar.getInstance().getTime());
+            if (date == "")
+                date = timeStamp;
+
+            weightService.add(new Weight(WeightService.CURRENT_INDEX++, name, Double.valueOf(weight), description, date));
+            response.sendRedirect("/weight-servlet");
+        }
     }
 
 

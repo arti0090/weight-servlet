@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Details</title>
+    link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Weight details</title>
 </head>
 <body>
-<h1>details</h1>
+
+<h1>details ${weightDetails.getName}</h1>
 </body>
 </html>

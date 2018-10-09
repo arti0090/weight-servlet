@@ -1,6 +1,13 @@
 package logger.weight.model;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Weight {
+
+
+
 
     private int id;     //id number of entry
     private String name; //short name of entry
@@ -14,6 +21,7 @@ public class Weight {
         this.weight = weight;
         this.description = description;
         this.date= date;
+
     }
 
     public String getDate() { return date; }
