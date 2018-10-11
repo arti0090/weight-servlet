@@ -34,6 +34,7 @@
     <tr class="clickable-row" >
         <td><c:out value="${weight.getId()}"/></td>
         <td><c:out value="${weight.getDate()}"/></td>
+        <td><c:out value="${weight.getName()}"/></td>
         <td><c:out value="${weight.getWeight()}"/></td>
         <td><a href="details?weightId=${weight.getId()}" >See details</a> </td>
         <td><a href="remove?weightId=${weight.getId()}" >Remove</a> </td>

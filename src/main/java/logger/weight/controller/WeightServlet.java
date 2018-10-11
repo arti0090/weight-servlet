@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = {
         WeightServlet.LIST_ACTION,
         WeightServlet.ADD_ACTION,
-        WeightServlet.DETAILS_ACTION
+        WeightServlet.DETAILS_ACTION,
+        WeightServlet.REMOVE_ACTION
 })
 
 public class WeightServlet extends HttpServlet{
@@ -28,8 +29,8 @@ public class WeightServlet extends HttpServlet{
     public static final String TEXT_HTML = "text/html";
     public static final String LIST_ACTION = "/";
     public static final String WEIGHT_LIST = "weightList";
-    public static final String ADD_ACTION ="/add";
-    public static final String DETAILS_ACTION="/details";
+    public static final String ADD_ACTION = "/add";
+    public static final String DETAILS_ACTION= "/details";
     public static final String WEIGHT_ID = "weightId";
     public static final String REMOVE_ACTION = "/remove";
 
@@ -40,14 +41,12 @@ public class WeightServlet extends HttpServlet{
         response.setContentType(TEXT_HTML);
 
         if(request.getServletPath().equals(DETAILS_ACTION)){
-            weightDetails(request,response);
+            weightDetails(request, response);
         }   else if(request.getServletPath().equals(ADD_ACTION)) {
             weightForm(response, request);
         }   else if(request.getServletPath().equals(REMOVE_ACTION)) {
             weightRemoveConfirm(request, response);
-        }
-
-        else {
+        } else {
             weightList(request, response);
         }
     }
@@ -74,7 +73,7 @@ public class WeightServlet extends HttpServlet{
             response.sendRedirect("/weight-servlet");
         } else {
             request.setAttribute("weightDetails",weightService.findOne(Integer.valueOf(paramId)));
-            request.getRequestDispatcher("details.jsp").forward(request,response);
+            request.getRequestDispatcher("details.jsp").forward(request, response);
         }
     }
 
